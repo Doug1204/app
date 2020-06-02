@@ -1,0 +1,232 @@
+<WindowManager>:
+    MainWindow:
+    InstaWindow:
+    Insta_choiceWindow:
+    SpamWindow:
+    UnfollowerWindow:
+    Change_followWindow:
+    See_unfollowersWindow:
+    Choice_tictactoeWindow:
+
+
+
+<MainWindow>:
+    name: 'main'
+    GridLayout:
+        cols:1
+        padding:10
+        spacing: 10
+        pos_hint: {'center_x': .5, 'center_y': .9}
+
+        Label:
+            text: 'Projects'
+            
+    ScrollView:
+        size_hint: (None, None)
+        size: (root.width * 0.8, root.height * 0.7)
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        do_scroll_x: False
+    
+        GridLayout:
+            cols:1
+            padding:10
+            spacing: 10
+            size_hint: (None, None)
+            pos_hint: {'center_x': .5}#, 'center_y': .5}
+            height: self.minimum_height
+
+            Button:
+                text: 'Instagram Bot'
+                size: (root.width * 0.8, root.height * 0.2)
+                size_hint: (None, None)
+                on_release:
+                    app.root.current = "Insta"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: 'Instagram Bot'
+                size: (root.width * 0.8, root.height * 0.2)
+                size_hint: (None, None)
+                on_release:
+                    app.root.current = "Insta"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: 'Instagram Bot'
+                size: (root.width * 0.8, root.height * 0.2)
+                size_hint: (None, None)
+                on_release:
+                    app.root.current = "Insta"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: 'Bot'
+                size: (root.width * 0.8, root.height * 0.2)
+                size_hint: (None, None)
+                on_release:
+                    app.root.current = "Insta"
+                    root.manager.transition.direction = "left"
+
+<InstaWindow>:
+    name: 'Insta'
+    username: user
+    password: pw
+
+    GridLayout:
+        cols: 2
+
+        Label:
+            text: 'Username'
+        
+        TextInput:
+            id: user
+        
+        Label:
+            text: 'Password'
+        
+        TextInput:
+            id: pw
+        
+        Button:
+            text: 'Back'
+            on_release:
+                app.root.current = 'main'
+                root.manager.transition.direction = "right"
+        
+        Button:
+            text: 'Submit'
+            on_release:
+                root.getInfo()
+
+<Insta_choiceWindow>:
+    name: "InstaChoice"
+    GridLayout:
+        cols: 1
+
+        GridLayout:
+            cols: 2
+            Button:
+                text: "Get Unfollowers"
+                on_release:
+                    app.root.current = 'unfollow'
+                    root.manager.transition.direction = "left"
+
+            Button:
+                text: "Spam"
+                on_release:
+                    app.root.current = 'Spam'
+                    root.manager.transition.direction = "left"
+        
+        Button:
+            text: 'Back'
+            on_release:
+                app.root.current = 'main'
+                root.manager.transition.direction = "right"
+
+<SpamWindow>:
+    name: 'Spam'
+    user: user
+    message: message
+    number: number
+
+    GridLayout:
+        cols: 2
+        rows: 4
+
+        Label:
+            text: 'Victim:'
+
+        TextInput:
+            id: user
+
+        Label:
+            text: 'What is your message'
+        
+        TextInput:
+            id: message
+        
+        Label:
+            text: 'How much spam'
+        
+        TextInput:
+            id: number
+        
+        Button:
+            text: 'Back'
+            on_release:
+                app.root.current = 'InstaChoice'
+                root.manager.transition.direction = "right"
+        
+        Button:
+            text: 'Send'
+            on_release:
+                root.send()
+                root.manager.transition.direction = "left"
+
+<UnfollowerWindow>:
+    name: 'unfollow'
+    user: user
+
+    GridLayout:
+
+        cols: 1
+
+        GridLayout:
+            cols: 2
+            Label:
+                text: 'Victim:'
+
+            TextInput:
+                id: user
+
+        Button:
+            text: 'Check'
+            on_release:
+                root.check()
+                root.manager.transition.direction = "left"
+
+
+<Change_followWindow>:
+    name: 'changeFolowing'
+    unfollow: unfollow
+
+    GridLayout:
+        cols: 1
+
+        TextInput:
+            id: unfollow
+            text: ''#unfollowers
+        
+        GridLayout:
+            cols: 2
+
+            Button:
+                text: 'Back'
+                on_release:
+                    app.root.current = 'InstaChoice'
+                    root.manager.transition.direction = "right"
+
+            Button:
+                text: 'UNFOLLOW'
+                on_release:
+                    root.change()
+                    root.manager.transition.direction = "left"
+
+<See_unfollowersWindow>:
+    name: 'viewUnfollow'
+    GridLayout:
+        cols: 1
+        TextInput:
+            text: root.view
+        Button:
+            text: 'Back'
+            on_release:
+                app.root.current = 'Insta'
+                root.manager.transition.direction = "right"    
+
+<Choice_tictactoeWindow>:
+    name: 'choiceTicTacToe'
+    GridLayout:
+        cols: 1
+        Button:
+            text: 'SinglePlayer'
+            #on_release:
+        Button:
+            text: 'Two player'    
